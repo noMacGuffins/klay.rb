@@ -54,8 +54,8 @@ module Klay
         raise SignatureError, "Unknown signature length #{signature.size}!"
       end
       r = signature[0, 64]
-      s = signature[64, 64]
-      v = signature[128..]
+      s = signature[64, 128]
+      v = signature[128]
       return r, s, v
     end
 
@@ -70,7 +70,8 @@ module Klay
       context = Secp256k1::Context.new
       r, s, v = dissect signature
       v = v.to_i(16)
-      raise SignatureError, "Invalid signature v byte #{v} for chain ID #{chain_id}!" if v < chain_id
+      p v
+      raise SignatureError, "Invalid signature v byte #{v} for chain ID #{chain_id}!" if v != 130
       recovery_id = Chain.to_recovery_id v, chain_id
       signature_rs = Util.hex_to_bin "#{r}#{s}"
       recoverable_signature = context.recoverable_signature_from_compact signature_rs, recovery_id
