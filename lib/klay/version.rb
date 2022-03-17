@@ -16,5 +16,5 @@
 module Klay
 
   # Defines the version of the {Eth} module.
-  VERSION = "0.0.2".freeze
+  VERSION = "0.0.3".freeze
 end

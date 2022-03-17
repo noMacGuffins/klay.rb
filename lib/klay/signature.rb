@@ -38,7 +38,7 @@ module Klay
     # @param message [String] the message string to be prefixed.
     # @return [String] an EIP-191 prefixed string.
     def prefix_message(message)
-      "#{EIP191_PREFIX_BYTE}Klaytn Signed Message:\n#{message.size}#{message}"
+      "\u0019Klaytn Signed Message:\n#{message.size}#{message}"
     end
 
     # Dissects a signature blob of 65+ bytes into its `r`, `s`, and `v`
@@ -50,12 +50,12 @@ module Klay
     def dissect(signature)
       signature = Util.bin_to_hex signature unless Util.is_hex? signature
       signature = Util.remove_hex_prefix signature
-      if signature.size < 130
+      if signature.size != 130
         raise SignatureError, "Unknown signature length #{signature.size}!"
       end
-      r = signature[0, 64]
-      s = signature[64, 128]
-      v = signature[128]
+      r = signature[0...64]
+      s = signature[64...128]
+      v = signature[128..]
       return r, s, v
     end
 
@@ -71,13 +71,27 @@ module Klay
       r, s, v = dissect signature
       v = v.to_i(16)
       p v
-      raise SignatureError, "Invalid signature v byte #{v} for chain ID #{chain_id}!" if v != 130
+      # raise SignatureError, "Invalid signature v byte #{v} for chain ID #{chain_id}!" if v != 130
       recovery_id = Chain.to_recovery_id v, chain_id
       signature_rs = Util.hex_to_bin "#{r}#{s}"
       recoverable_signature = context.recoverable_signature_from_compact signature_rs, recovery_id
       public_key = recoverable_signature.recover_public_key blob
       Util.bin_to_hex public_key.uncompressed
     end
+
+    # def to_recovery_id(v)
+    #   if (v == 0 || v == 1) {
+    #     return v;
+    #   }
+    #   if (v < 27) {
+    #     raise new SignatureError("v byte out of range: " + v);
+    #   }
+    #   if(v < 35) {
+    #     // v = parity value {0,1} + 27
+    #     return v - 27;
+    #   } 
+    #   return ((v - 35) % 2) == 0 ? 0 : 1;
+    # end
 
     # Recovers a public key from a prefixed, personal message and
     # a signature on a given chain. (EIP-191)
