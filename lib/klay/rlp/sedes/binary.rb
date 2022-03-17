@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 # -*- encoding : ascii-8bit -*-
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides an recursive-length prefix (RLP) encoder and decoder.
@@ -33,7 +33,7 @@ module Klay
           #
           # @param l [Integer] the fixed size of the binary.
           # @param allow_empty [Boolean] indicator wether empty binaries should be allowed.
-          # @return [Eth::Rlp::Sedes::Binary] a serializable binary of fixed size.
+          # @return [Klay::Rlp::Sedes::Binary] a serializable binary of fixed size.
           def fixed_length(l, allow_empty: false)
             new(min_length: l, max_length: l, allow_empty: allow_empty)
           end

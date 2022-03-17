@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides the `Tx` module supporting various transaction types.
@@ -77,8 +77,8 @@ module Klay
       # @option params [Integer] :priority_fee the max priority fee per gas.
       # @option params [Integer] :max_gas_fee the max transaction fee per gas.
       # @option params [Integer] :gas_limit the gas limit.
-      # @option params [Eth::Address] :from the sender address.
-      # @option params [Eth::Address] :to the reciever address.
+      # @option params [Klay::Address] :from the sender address.
+      # @option params [Klay::Address] :to the reciever address.
       # @option params [Integer] :value the transaction value.
       # @option params [String] :data the transaction data payload.
       # @option params [Array] :access_list an optional access list.
@@ -127,11 +127,11 @@ module Klay
       # Overloads the constructor for decoding raw transactions and creating unsigned copies.
       konstructor :decode, :unsigned_copy
 
-      # Decodes a raw transaction hex into an {Eth::Tx::Eip1559}
+      # Decodes a raw transaction hex into an {Klay::Tx::Eip1559}
       # transaction object.
       #
       # @param hex [String] the raw transaction hex-string.
-      # @return [Eth::Tx::Eip1559] transaction payload.
+      # @return [Klay::Tx::Eip1559] transaction payload.
       # @raise [TransactionTypeError] if transaction type is invalid.
       # @raise [ParameterError] if transaction is missing fields.
       # @raise [DecoderError] if transaction decoding fails.
@@ -194,8 +194,8 @@ module Klay
 
       # Creates an unsigned copy of a transaction payload.
       #
-      # @param tx [Eth::Tx::Eip1559] an EIP-1559 transaction payload.
-      # @return [Eth::Tx::Eip1559] an unsigned EIP-1559 transaction payload.
+      # @param tx [Klay::Tx::Eip1559] an EIP-1559 transaction payload.
+      # @return [Klay::Tx::Eip1559] an unsigned EIP-1559 transaction payload.
       # @raise [TransactionTypeError] if transaction type does not match.
       def unsigned_copy(tx)
 
@@ -225,7 +225,7 @@ module Klay
 
       # Sign the transaction with a given key.
       #
-      # @param key [Eth::Key] the key-pair to use for signing.
+      # @param key [Klay::Key] the key-pair to use for signing.
       # @return [String] a transaction hash.
       # @raise [Signature::SignatureError] if transaction is already signed.
       # @raise [Signature::SignatureError] if sender address does not match signing key.

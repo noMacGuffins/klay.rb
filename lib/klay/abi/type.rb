@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 # -*- encoding : ascii-8bit -*-
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # Provides a Ruby implementation of the Ethereum Applicatoin Binary Interface (ABI).
+  # Provides a Ruby implementation of the Klaytn Applicatoin Binary Interface (ABI).
   module Abi
 
     # Provides a class to handle and parse common ABI types.
@@ -41,7 +41,7 @@ module Klay
       # @param base_type [String] the base-type attribute.
       # @param sub_type [String] the sub-type attribute.
       # @param dimensions [Array] the dimension attribute.
-      # @return [Eth::Abi::Type] an ABI type object.
+      # @return [Klay::Abi::Type] an ABI type object.
       def initialize(base_type, sub_type, dimensions)
         sub_type = sub_type.to_s
         @base_type = base_type
@@ -56,7 +56,7 @@ module Klay
       # Creates a new Type upon success (using konstructor).
       #
       # @param type [String] a common Solidity type.
-      # @return [Eth::Abi::Type] a parsed Type object.
+      # @return [Klay::Abi::Type] a parsed Type object.
       # @raise [ParseError] if it fails to parse the type.
       def parse(type)
         _, base_type, sub_type, dimension = /([a-z]*)([0-9]*x?[0-9]*)((\[[0-9]*\])*)/.match(type).to_a
@@ -77,14 +77,14 @@ module Klay
 
       # Creates a new uint256 type used for size.
       #
-      # @return [Eth::Abi::Type] a uint256 size type.
+      # @return [Klay::Abi::Type] a uint256 size type.
       def self.size_type
         @size_type ||= new("uint", 256, [])
       end
 
       # Compares two types for their attributes.
       #
-      # @param another_type [Eth::Abi::Type] another type to be compared.
+      # @param another_type [Klay::Abi::Type] another type to be compared.
       # @return [Boolean] true if all attributes match.
       def ==(another_type)
         base_type == another_type.base_type and
@@ -120,7 +120,7 @@ module Klay
 
       # Types can have nested sub-types in arrays.
       #
-      # @return [Eth::Abi::Type] nested sub-type.
+      # @return [Klay::Abi::Type] nested sub-type.
       def nested_sub
         @nested_sub ||= self.class.new(base_type, sub_type, dimensions[0...-1])
       end

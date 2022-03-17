@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,25 +18,25 @@ require "rbsecp256k1"
 require "scrypt"
 require "securerandom"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # The {Eth::Key} class to handle Secp256k1 private/public key-pairs.
+  # The {Klay::Key} class to handle Secp256k1 private/public key-pairs.
   class Key
 
-    # The {Eth::Key::Decrypter} class to handle PBKDF2-SHA-256 decryption.
+    # The {Klay::Key::Decrypter} class to handle PBKDF2-SHA-256 decryption.
     autoload :Decrypter, "eth/key/decrypter"
 
-    # The {Eth::Key::Encrypter} class to handle PBKDF2-SHA-256 encryption.
+    # The {Klay::Key::Encrypter} class to handle PBKDF2-SHA-256 encryption.
     autoload :Encrypter, "eth/key/encrypter"
 
-    # The `Secp256k1::PrivateKey` of the {Eth::Key} pair.
+    # The `Secp256k1::PrivateKey` of the {Klay::Key} pair.
     attr_reader :private_key
 
-    # The `Secp256k1::PublicKey` of the {Eth::Key} pair.
+    # The `Secp256k1::PublicKey` of the {Klay::Key} pair.
     attr_reader :public_key
 
-    # Constructor of the {Eth::Key} class. Creates a new random key-pair
+    # Constructor of the {Klay::Key} class. Creates a new random key-pair
     # if no `priv` key is provided.
     #
     # @param priv [String] binary string of private key data.
@@ -82,7 +82,7 @@ module Klay
       Util.bin_to_hex signature.pack "c*"
     end
 
-    # Prefixes a message with `\x19Ethereum Signed Message:` and signs
+    # Prefixes a message with `\u0019Klaytn Signed Message:` and signs
     # it in the common way used by many web3 wallets. Complies with
     # EIP-191 prefix `0x19` and version byte `0x45` (`E`). See also
     # {Signature.personal_recover}.
@@ -119,7 +119,7 @@ module Klay
     end
 
     # Exports the private key bytes in a wrapper function to maintain
-    # backward-compatibility with older versions of {Eth::Key}.
+    # backward-compatibility with older versions of {Klay::Key}.
     #
     # @return [String] private key as packed byte-string.
     def private_bytes
@@ -143,7 +143,7 @@ module Klay
     end
 
     # Exports the uncompressed public key bytes in a wrapper function to
-    # maintain backward-compatibility with older versions of {Eth::Key}.
+    # maintain backward-compatibility with older versions of {Klay::Key}.
     #
     # @return [String] uncompressed public key as packed byte-string.
     def public_bytes
@@ -159,7 +159,7 @@ module Klay
 
     # Exports the checksummed public address.
     #
-    # @return [Eth::Address] compressed address as packed hex prefixed string.
+    # @return [Klay::Address] compressed address as packed hex prefixed string.
     def address
       Util.public_key_to_address public_bytes
     end

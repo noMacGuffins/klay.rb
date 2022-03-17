@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.required_ruby_version = ">= 2.6", "< 4.0"
 
-  # keccak for hashing everything in ethereum
+  # keccak for hashing everything in klaytn
   spec.add_dependency "keccak", "~> 1.3"
 
   # konstructor gem for overloading constructors

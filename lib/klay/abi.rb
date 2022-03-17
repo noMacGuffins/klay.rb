@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ require "konstructor"
 
 require "klay/abi/type"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # Provides a Ruby implementation of the Ethereum Applicatoin Binary Interface (ABI).
+  # Provides a Ruby implementation of the Klaytn Applicatoin Binary Interface (ABI).
   # ref: https://docs.soliditylang.org/en/develop/abi-spec.html
   module Abi
     extend self
@@ -68,7 +68,7 @@ module Klay
 
     # Encodes a specific value, either static or dynamic.
     #
-    # @param type [Eth::Abi::Type] type to be encoded.
+    # @param type [Klay::Abi::Type] type to be encoded.
     # @param arg [String|Number] value to be encoded.
     # @return [String] the encoded type.
     # @raise [EncodingError] if value does not match type.
@@ -110,7 +110,7 @@ module Klay
 
     # Encodes primitive types.
     #
-    # @param type [Eth::Abi::Type] type to be encoded.
+    # @param type [Klay::Abi::Type] type to be encoded.
     # @param arg [String|Number] value to be encoded.
     # @return [String] the encoded primitive type.
     # @raise [EncodingError] if value does not match type.
@@ -198,7 +198,7 @@ module Klay
 
     # Decodes a specific value, either static or dynamic.
     #
-    # @param type [Eth::Abi::Type] type to be decoded.
+    # @param type [Klay::Abi::Type] type to be decoded.
     # @param arg [String] encoded type data string.
     # @return [String] the decoded data for the type.
     # @raise [DecodingError] if decoding fails for type.
@@ -234,7 +234,7 @@ module Klay
 
     # Decodes primitive types.
     #
-    # @param type [Eth::Abi::Type] type to be decoded.
+    # @param type [Klay::Abi::Type] type to be decoded.
     # @param data [String] encoded primitive type data string.
     # @return [String] the decoded data for the type.
     # @raise [DecodingError] if decoding fails for type.

@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,19 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # The {Eth::Address} class to handle checksummed Ethereum addresses.
+  # The {Klay::Address} class to handle checksummed Klaytn addresses.
   class Address
 
     # Provides a special checksum error if EIP-55 is violated.
     class CheckSumError < StandardError; end
 
-    # The prefixed and checksummed Ethereum address.
+    # The prefixed and checksummed Klaytn address.
     attr_reader :address
 
-    # Constructor of the {Eth::Address} class. Creates a new hex
+    # Constructor of the {Klay::Address} class. Creates a new hex
     # prefixed address.
     #
     # @param address [String] hex string representing an ethereum address.

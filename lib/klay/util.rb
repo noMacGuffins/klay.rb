@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
 
 require "digest/keccak"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # Defines handy tools for the {Eth} gem for convenience.
+  # Defines handy tools for the {Klay} gem for convenience.
   module Util
     extend self
 
-    # Generates an Ethereum address from a given compressed or
+    # Generates an Klaytn address from a given compressed or
     # uncompressed binary or hexadecimal public key string.
     #
     # @param str [String] the public key to be converted.
-    # @return [Eth::Address] an Ethereum address.
+    # @return [Klay::Address] an Klaytn address.
     def public_key_to_address(str)
       str = hex_to_bin str if is_hex? str
       bytes = keccak256(str[1..-1])[-20..-1]

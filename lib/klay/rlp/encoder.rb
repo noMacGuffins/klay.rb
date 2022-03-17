@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 # -*- encoding : ascii-8bit -*-
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides an recursive-length prefix (RLP) encoder and decoder.
@@ -28,9 +28,9 @@ module Klay
       #
       # @param obj [Object] a Ruby object.
       # @return [String] the RLP encoded item.
-      # @raise [Eth::Rlp::EncodingError] in the rather unlikely case that the item
+      # @raise [Klay::Rlp::EncodingError] in the rather unlikely case that the item
       #     is too big to encode (will not happen).
-      # @raise [Eth::Rlp::SerializationError] if the serialization fails.
+      # @raise [Klay::Rlp::SerializationError] if the serialization fails.
       def perform(obj)
         item = Sedes.infer(obj).serialize(obj)
         result = encode_raw item

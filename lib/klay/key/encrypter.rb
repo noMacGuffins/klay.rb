@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,19 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # The {Eth::Key::Encrypter} class to handle PBKDF2-SHA-256 encryption.
+  # The {Klay::Key::Encrypter} class to handle PBKDF2-SHA-256 encryption.
   class Key::Encrypter
 
     # Provides a specific encrypter error if decryption fails.
     class EncrypterError < StandardError; end
 
-    # Class method {Eth::Key::Encrypter.perform} to performa an key-store
+    # Class method {Klay::Key::Encrypter.perform} to performa an key-store
     # encryption.
     #
-    # @param key [Eth::Key] representing a secret key-pair used for encryption.
+    # @param key [Klay::Key] representing a secret key-pair used for encryption.
     # @param options [Hash] the options to encrypt with.
     # @option options [String] :kdf key derivation function defaults to pbkdf2.
     # @option options [String] :id uuid given to the secret key.
@@ -38,11 +38,11 @@ module Klay
       new(key, options).perform(password)
     end
 
-    # Constructor of the {Eth::Key::Encrypter} class for secret key
-    # encryption. Should not be used; use {Eth::Key::Encrypter.perform}
+    # Constructor of the {Klay::Key::Encrypter} class for secret key
+    # encryption. Should not be used; use {Klay::Key::Encrypter.perform}
     # instead.
     #
-    # @param key [Eth::Key] representing a secret key-pair used for encryption.
+    # @param key [Klay::Key] representing a secret key-pair used for encryption.
     # @param options [Hash] the options to encrypt with.
     # @option options [String] :kdf key derivation function defaults to pbkdf2.
     # @option options [String] :id uuid given to the secret key.

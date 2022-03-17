@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 #  -*- encoding : ascii-8bit -*-
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides commonly used constants, such as zero bytes or zero keys.

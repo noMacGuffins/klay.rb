@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ require "klay/rlp/sedes/big_endian_int"
 require "klay/rlp/sedes/binary"
 require "klay/rlp/sedes/list"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides an recursive-length prefix (RLP) encoder and decoder.
@@ -27,13 +27,13 @@ module Klay
     # Provides serializable and deserializable types (SeDes).
     module Sedes
 
-      # Provides a singleton {Eth::Rlp::Sedes} class to infer objects and types.
+      # Provides a singleton {Klay::Rlp::Sedes} class to infer objects and types.
       class << self
 
         # Tries to find a sedes objects suitable for a given Ruby object.
         #
         # The sedes objects considered are `obj`'s class, {big_endian_int} and
-        # {binary}. If `obj` is a list, an {Eth::Rlp::Sedes::List} will be
+        # {binary}. If `obj` is a list, an {Klay::Rlp::Sedes::List} will be
         # constructed recursively.
         #
         # @param obj [Object] the Ruby object for which to find a sedes object.
@@ -57,14 +57,14 @@ module Klay
         # A utility to use a big-endian, unsigned integer sedes type with
         # unspecified length.
         #
-        # @return [Eth::Rlp::Sedes::BigEndianInt] a big-endian, unsigned integer sedes.
+        # @return [Klay::Rlp::Sedes::BigEndianInt] a big-endian, unsigned integer sedes.
         def big_endian_int
           @big_endian_int ||= BigEndianInt.new
         end
 
         # A utility to use a binary sedes type.
         #
-        # @return [Eth::Rlp::Sedes::Binary] a binary sedes.
+        # @return [Klay::Rlp::Sedes::Binary] a binary sedes.
         def binary
           @binary ||= Binary.new
         end

@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ require "klay/tx/eip2930"
 require "klay/tx/legacy"
 require "klay/unit"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides the `Tx` module supporting various transaction types.
@@ -39,8 +39,8 @@ module Klay
     # The minimum transaction gas limit required for a value transfer.
     DEFAULT_GAS_LIMIT = 21_000.freeze
 
-    # The "default" transaction gas price of 20 GWei. Do not use.
-    DEFAULT_GAS_PRICE = (20 * Unit::GWEI).freeze
+    # The "default" transaction gas price of 25 GPeb.
+    DEFAULT_GAS_PRICE = (25 * Unit::GPEB).freeze
 
     # The calldata gas cost of a non-zero byte as per EIP-2028.
     COST_NON_ZERO_BYTE = 16.freeze
@@ -101,7 +101,7 @@ module Klay
     # Decodes a transaction hex of any known type (2, 1, or legacy).
     #
     # @param hex [String] the raw transaction hex-string.
-    # @return [Eth::Tx] transaction payload.
+    # @return [Klay::Tx] transaction payload.
     # @raise [TransactionTypeError] if the transaction type is unknown.
     def decode(hex)
       hex = Util.remove_hex_prefix hex
@@ -128,8 +128,8 @@ module Klay
 
     # Creates an unsigned copy of any transaction object.
     #
-    # @param tx [Eth::Tx] any transaction payload.
-    # @return [Eth::Tx] an unsigned transaction payload of the same type.
+    # @param tx [Klay::Tx] any transaction payload.
+    # @return [Klay::Tx] an unsigned transaction payload of the same type.
     # @raise [TransactionTypeError] if the transaction type is unknown.
     def unsigned_copy(tx)
       case tx.type

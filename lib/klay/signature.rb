@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 require "rbsecp256k1"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Defines handy tools for verifying and recovering signatures.
@@ -79,20 +79,6 @@ module Klay
       Util.bin_to_hex public_key.uncompressed
     end
 
-    # def to_recovery_id(v)
-    #   if (v == 0 || v == 1) {
-    #     return v;
-    #   }
-    #   if (v < 27) {
-    #     raise new SignatureError("v byte out of range: " + v);
-    #   }
-    #   if(v < 35) {
-    #     // v = parity value {0,1} + 27
-    #     return v - 27;
-    #   } 
-    #   return ((v - 35) % 2) == 0 ? 0 : 1;
-    # end
-
     # Recovers a public key from a prefixed, personal message and
     # a signature on a given chain. (EIP-191)
     # Ref: https://eips.ethereum.org/EIPS/eip-191
@@ -124,7 +110,7 @@ module Klay
     #
     # @param blob [String] that arbitrary data to be verified.
     # @param signature [String] the hex string containing the signature.
-    # @param public_key [String] either a public key or an Ethereum address.
+    # @param public_key [String] either a public key or an Klaytn address.
     # @param chain_id [Integer] the chain ID used to sign.
     # @return [Boolean] true if signature matches provided public key.
     # @raise [SignatureError] if it cannot determine the type of data or public key.
@@ -149,7 +135,7 @@ module Klay
 
       if public_key.instance_of? Address
 
-        # recovering using an Eth::Address
+        # recovering using an Klay::Address
         address = public_key.to_s
         recovered_address = Util.public_key_to_address(recovered_key).to_s
         return address == recovered_address

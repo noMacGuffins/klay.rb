@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # Provides the `Eth::Api` module grouping known RPC commands.
+  # Provides the `Klay::Api` module grouping known RPC commands.
   module Api
 
     # Implements the available RPC-APIs provided by Geth version 1.10.15.
@@ -189,7 +189,7 @@ module Klay
       "les_setClientParams",
       "les_setDefaultParams",
       "miner_getHashrate",
-      "miner_setEtherbase",
+      "miner_setKlayerbase",
       "miner_setExtra",
       "miner_setGasLimit",
       "miner_setGasPrice",

@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides the `Tx` module supporting various transaction types.
@@ -67,8 +67,8 @@ module Klay
       # @option params [Integer] :nonce the signer nonce.
       # @option params [Integer] :gas_price the gas price.
       # @option params [Integer] :gas_limit the gas limit.
-      # @option params [Eth::Address] :from the sender address.
-      # @option params [Eth::Address] :to the reciever address.
+      # @option params [Klay::Address] :from the sender address.
+      # @option params [Klay::Address] :to the reciever address.
       # @option params [Integer] :value the transaction value.
       # @option params [String] :data the transaction data payload.
       # @param chain_id [Integer] the EIP-155 Chain ID.
@@ -113,11 +113,11 @@ module Klay
       # overloads the constructor for decoding raw transactions and creating unsigned copies
       konstructor :decode, :unsigned_copy
 
-      # Decodes a raw transaction hex into an {Eth::Tx::Legacy}
+      # Decodes a raw transaction hex into an {Klay::Tx::Legacy}
       # transaction object.
       #
       # @param hex [String] the raw transaction hex-string.
-      # @return [Eth::Tx::Legacy] transaction object.
+      # @return [Klay::Tx::Legacy] transaction object.
       # @raise [ParameterError] if transaction misses fields.
       def decode(hex)
         bin = Util.hex_to_bin hex
@@ -170,8 +170,8 @@ module Klay
 
       # Creates an unsigned copy of a transaction.
       #
-      # @param tx [Eth::Tx::Legacy] an legacy transaction object.
-      # @return [Eth::Tx::Legacy] an unsigned transaction object.
+      # @param tx [Klay::Tx::Legacy] an legacy transaction object.
+      # @return [Klay::Tx::Legacy] an unsigned transaction object.
       # @raise [TransactionTypeError] if transaction type does not match.
       def unsigned_copy(tx)
 
@@ -199,7 +199,7 @@ module Klay
 
       # Sign the transaction with a given key.
       #
-      # @param key [Eth::Key] the key-pair to use for signing.
+      # @param key [Klay::Key] the key-pair to use for signing.
       # @return [String] a transaction hash.
       # @raise [Signature::SignatureError] if transaction is already signed.
       # @raise [Signature::SignatureError] if sender address does not match signing key.

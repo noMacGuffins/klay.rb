@@ -1,58 +1,38 @@
 # Klay for Ruby
 
-A simple library to build and sign Klayereum transactions. Allows separation of key and node management. Sign transactions and handle keys anywhere you can run ruby, broadcast transactions through any node. Sign messages and recover signatures for authentication.
+A simple library to build and sign Klaytn transactions. Allows separation of key and node management. Sign transactions and handle keys anywhere you can run ruby, broadcast transactions through any node. Sign messages and recover signatures for authentication.
 
 What you get:
-- [x] Secp256k1 Key-Pairs and Encrypted Klayereum Key-Stores (JSON)
-- [x] EIP-55 Checksummed Klayereum Addresses
+- [x] Secp256k1 Key-Pairs and Encrypted Klaytn Key-Stores (JSON)
+- [x] EIP-55 Checksummed Klaytn Addresses
 - [x] EIP-155 Replay protection with Chain IDs (with presets)
-- [x] EIP-191 Klayereum Signed Messages (with prefix and type)
-- [x] EIP-712 Klayereum Signed Type Data
-- [x] EIP-1559 Klayereum Type-2 Transactions (with priority fee and max gas fee)
+- [x] EIP-191 Klaytn Signed Messages (with prefix and type)
+- [x] EIP-712 Klaytn Signed Type Data
+- [x] EIP-1559 Klaytn Type-2 Transactions (with priority fee and max gas fee)
 - [x] EIP-2028 Call-data intrinsic gas cost estimates (plus access lists)
-- [x] EIP-2718 Klayereum Transaction Envelopes (and types)
-- [x] EIP-2930 Klayereum Type-1 Transactions (with access lists)
+- [x] EIP-2718 Klaytn Transaction Envelopes (and types)
+- [x] EIP-2930 Klaytn Type-1 Transactions (with access lists)
 - [x] ABI-Encoder and Decoder (including type parser)
 - [x] RLP-Encoder and Decoder (including sedes)
 - [x] RPC-Client (IPC/HTTP) for Execution-Layer APIs
-
-Soon (TM):
-- [ ] Smart Contracts and Solidity Support
-- [ ] EIP-1271 Smart-Contract Authentification
-- [ ] HD-Wallets (BIP-32) and Mnemonics (BIP-39)
-
-Contents:
-- [1. Installation](#1-installation)
-- [2. Usage](#2-usage)
-  - [2.1. Klayereum Keys and Addresses (EIP-55)](#21-ethereum-keys-and-addresses-eip-55)
-  - [2.2. Klayereum Signatures (EIP-191, EIP-712)](#22-ethereum-signatures-eip-191-eip-712)
-  - [2.3. Klayereum Chains (EIP-155)](#23-ethereum-chains-eip-155)
-  - [2.4. Klayereum Transactions (EIP-1559, EIP-2718, EIP-2930)](#24-ethereum-transactions-eip-1559-eip-2718-eip-2930)
-  - [2.5. Klayereum ABI Encoder and Decoder](#25-ethereum-abi-encoder-and-decoder)
-  - [2.6. Klayereum RLP Encoder and Decoder](#26-ethereum-rlp-encoder-and-decoder)
-  - [2.7. Klayereum RPC-Client](#27-ethereum-rpc-client)
-- [3. Documentation](#3-documentation)
-- [4. Testing](#4-testing)
-- [5. Contributing](#5-contributing)
-- [6. License and Credits](#6-license-and-credits)
 
 ## 1. Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "eth"
+gem "klay"
 ```
 
 Or install it yourself as:
 
 ```shell
-gem install eth
+gem install klay
 ```
 
 ## 2. Usage
 
-### 2.1. Klayereum Keys and Addresses (EIP-55)
+### 2.1. Klaytn Keys and Addresses (EIP-55)
 
 Generate a random Secp256k1 key-pair.
 
@@ -61,7 +41,7 @@ key = Klay::Key.new
 # => #<Klay::Key:0x00005574a6ba80b8 @private_key=#<Secp256k1::PrivateKey:0x00005574a6b9a0a8 @data=")&\x86P\xB5\x16\xD9]\xFA;\x1F\xF6\xD9\xCF\xE3Vj/\xE2\x81\xC0\x9D\xE9\x05o!q\x82G\x9A\x10Q">, @public_key=#<Secp256k1::PublicKey:0x00005574a6b9bf98>>
 ```
 
-Create an password-encrypted Klayereum key-store.
+Create an password-encrypted Klaytn key-store.
 
 ```ruby
 my_key = Klay::Key.new priv: "30137644b564785d01420f8043f043d74dcca64008e57c59f8ce713a0005a54b"
@@ -71,7 +51,7 @@ restored_key = Klay::Key::Decrypter.perform key_store, "secret-password-1337"
 # => "30137644b564785d01420f8043f043d74dcca64008e57c59f8ce713a0005a54b"
 ```
 
-Manage Klayereum address objects adhering to EIP-55 checksum format.
+Manage Klaytn address objects adhering to EIP-55 checksum format.
 
 ```ruby
 address = Klay::Address.new "0xd496b23d61f88a8c7758fca7560dcfac7b3b01f9"
@@ -84,7 +64,7 @@ address.checksummed # EIP 55
 
 See `/spec` or [Documentation](https://q9f.github.io/eth.rb/) for more details about key-pairs, encrypting/decrypting key-stores with a secret, and checksummed addresses.
 
-### 2.2. Klayereum Signatures (EIP-191, EIP-712)
+### 2.2. Klaytn Signatures (EIP-191, EIP-712)
 
 Manage keypairs to sign messages in EIP-191 (`personal_sign`) format or typed data in EIP-712 (`sign_typed_data`) format.
 
@@ -116,9 +96,9 @@ Klay::Signature.verify "Hello World!", signature, address, Klay::Chain::GOERLI
 
 See `/spec` or [Documentation](https://q9f.github.io/eth.rb/) for signing typed data as per EIP-712.
 
-### 2.3. Klayereum Chains (EIP-155)
+### 2.3. Klaytn Chains (EIP-155)
 
-Manage Klayereum chain IDs for EIP-155 replay protection.
+Manage Klaytn chain IDs for EIP-155 replay protection.
 
 ```ruby
 chain_id = Klay::Chain::OPTIMISM
@@ -131,7 +111,7 @@ chain_id = Klay::Chain.to_chain_id v
 # => 10
 ```
 
-### 2.4. Klayereum Transactions (EIP-1559, EIP-2718, EIP-2930)
+### 2.4. Klaytn Transactions (EIP-1559, EIP-2718, EIP-2930)
 
 Create an EIP-1559-conform transaction:
 
@@ -139,11 +119,11 @@ Create an EIP-1559-conform transaction:
 payload = {
   chain_id: Klay::Chain::GOERLI,
   nonce: 5,
-  priority_fee: 3 * Klay::Unit::GWEI,
-  max_gas_fee: 69 * Klay::Unit::GWEI,
+  priority_fee: 3 * Klay::Unit::GPEB,
+  max_gas_fee: 69 * Klay::Unit::GPEB,
   gas_limit: 230_420,
   to: "0xCaA29806044A08E533963b2e573C1230A2cd9a2d",
-  value: 0.069423 * Klay::Unit::ETHER,
+  value: 0.069423 * Klay::Unit::KLAY,
 }
 # => {:chain_id=>5, :nonce=>5, :priority_fee=>0.3e10, :max_gas_fee=>0.69e11, :gas_limit=>230420, :to=>"0xCaA29806044A08E533963b2e573C1230A2cd9a2d", :value=>0.69423e17}
 tx = Klay::Tx.new payload
@@ -158,9 +138,9 @@ tx.hex
 
 This gem also supports access lists and ABI-encoded data payloads. See `/spec` or [Documentation](https://q9f.github.io/eth.rb/) for more details about the various supported transaction types (legacy, type-1, type-2), payload parameters, and how to estimate intrinsic gas costs.
 
-### 2.5. Klayereum ABI Encoder and Decoder
+### 2.5. Klaytn ABI Encoder and Decoder
 
-Encode and decode Klayereum application binary interface data (ABI).
+Encode and decode Klaytn application binary interface data (ABI).
 
 ```ruby
 Klay::Util.bin_to_hex Klay::Abi.encode(["string", "address"], ["Hello, Bob!", "0xd496b23d61f88a8c7758fca7560dcfac7b3b01f9"])
@@ -169,9 +149,9 @@ Klay::Abi.decode(["string", "address"], "000000000000000000000000000000000000000
 # => ["Hello, Bob!", "0xd496b23d61f88a8c7758fca7560dcfac7b3b01f9"]
 ```
 
-### 2.6. Klayereum RLP Encoder and Decoder
+### 2.6. Klaytn RLP Encoder and Decoder
 
-Serialize and deserialize Klayereum recursive-length prefix data (RLP).
+Serialize and deserialize Klaytn recursive-length prefix data (RLP).
 
 ```ruby
 Klay::Util.bin_to_hex Klay::Rlp.encode ["Hello, Bob!", "0xd496b23d61f88a8c7758fca7560dcfac7b3b01f9"]
@@ -187,7 +167,7 @@ Klay::Rlp.decode "c7c0c1c0c3c0c1c0"
 # => [[], [[]], [[], [[]]]]
 ```
 
-### 2.7. Klayereum RPC-Client
+### 2.7. Klaytn RPC-Client
 
 Create an IPC- or HTTP-RPC-API client to seamlessly query the chain state, e.g., Infura over HTTPS with access token:
 
@@ -207,7 +187,7 @@ cli = Klay::Client.create "/tmp/geth.ipc"
 # => #<Klay::Client::Ipc:0x000055d43f51c390 @gas_limit=21000, @id=0, @max_fee_per_gas=0.2e11, @max_priority_fee_per_gas=0, @path="/tmp/geth.ipc">
 cli.eth_coinbase
 # => {"jsonrpc"=>"2.0", "id"=>1, "result"=>"0x6868074fb21c48dfad0c448fbabd99383a6598e4"}
-tx = cli.transfer_and_wait(Klay::Key.new.address, 1337 * Klay::Unit::ETHER)
+tx = cli.transfer_and_wait(Klay::Key.new.address, 1337 * Klay::Unit::KLAY)
 # => "0x141c6dff40df34fe4fce5a65588d2161dab3e0e977fb8049ff7d79bc901034f7"
 cli.eth_get_transaction_by_hash tx
 # => {"jsonrpc"=>"2.0", "id"=>8, "result"=> {"blockHash"=>"0x47e742038c75851348dbda87b15fde044d54c442c371f43bea881a44d5589de3", "blockNumber"=>"0x1", "from"=>"0x6868074fb21c48dfad0c448fbabd99383a6598e4", "gas"=>"0x5208", "gasPrice"=>"0x342770c1", "maxFeePerGas"=>"0x77359401", "maxPriorityFeePerGas"=>"0x1", "hash"=>"0x141c6dff40df34fe4fce5a65588d2161dab3e0e977fb8049ff7d79bc901034f7", "input"=>"0x", "nonce"=>"0x0", "to"=>"0x311c61e5dc6123ad016bb7fd687d283c327bcd5f", "transactionIndex"=>"0x0", "value"=>"0x487a9a304539440000", "type"=>"0x2", "accessList"=>[], "chainId"=>"0x539", "v"=>"0x0", "r"=>"0xb42477d69eae65a3a3d91d9cb173e4a45a403fb0a15fa729dbfdc9d13211d7b5", "s"=>"0x4a2f98fc2b61c2d7c907520bc8c6ebe42ea6fe1cb6824f95e4b30e9464395100"}}
@@ -231,7 +211,7 @@ The goal is to have 100% API documentation available.
 
 ## 4. Testing
 
-To run tests, simply use `rspec`. Note, that the Klayereum tests fixtures are required.
+To run tests, simply use `rspec`. Note, that the Klaytn tests fixtures are required.
 
 ```shell
 git submodule update --init --recursive
@@ -247,10 +227,10 @@ Pull requests are welcome! To contribute, please consider the following:
 * Code should be fully documented. Run `yard doc` and make sure it does not yield any warnings or undocumented sets.
 * Code should be fully covered by tests. Run `rspec` to make sure all tests pass. The CI has an integration that will assis you to identify uncovered lines of code and get coverage up to 100%.
 * Code should be formatted properly. Try to eliminate the most common issues such as trailing white-spaces or duplicate new-lines. Usage of the `rufo` gem is recommended.
-* Submit pull requests, questions, or issues to Github: https://github.com/noMacGuffins/klay.rb
+* Submit pull requests, questions, or issues to Github: https://github.com/noMacGuffins/klay
 
 ## 6. License and Credits
-The `eth` gem is licensed under the conditions of [Apache 2.0](./LICENSE.txt). Please see [AUTHORS](./AUTHORS.txt) for contributors and copyright notices.
+The `klay` gem is licensed under the conditions of [Apache 2.0](./LICENSE.txt). Please see [AUTHORS](./AUTHORS.txt) for contributors and copyright notices.
 
 This gem is a complete rewrite of the old `eth` gem by Steve Ellis.
 * https://github.com/se3000/ruby-eth/ (MIT)

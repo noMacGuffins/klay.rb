@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Encapsulates {Eth::Chain} IDs and utilities for EIP-155 compatibility.
@@ -108,7 +108,7 @@ module Klay
     # @param chain_id [Integer] the chain id the signature was generated on.
     # @return [Integer] the recovery id corresponding to `v`.
     # @raise [ReplayProtectionError] if the given `v` is invalid.
-    def to_recovery_id(v, chain_id = ETHEREUM)
+    def to_recovery_id(v, chain_id = CYPRESS)
       e = 0 + 2 * chain_id + 35
       i = 1 + 2 * chain_id + 35
       if [0, 1].include? v

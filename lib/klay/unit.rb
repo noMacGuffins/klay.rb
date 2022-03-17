@@ -14,36 +14,24 @@
 
 require "bigdecimal"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides constants for common Ethereum units.
   module Unit
     extend self
 
-    # Ethereum unit 1 wei := 0.000000000000000001 Ether.
-    WEI = BigDecimal("1e0").freeze
+    # Ethereum unit 1 peb := 0.000000000000000001 Klay.
+    PEB = BigDecimal("1e0").freeze
 
-    # Ethereum unit 1 babbage := 0.000000000000001 Ether or 1_000 wei.
-    BABBAGE = BigDecimal("1e3").freeze
+    # Ethereum unit 1 ston := 0.000000001 Klay or 1_000_000_000 peb.
+    STON = BigDecimal("1e9").freeze
 
-    # Ethereum unit 1 lovelace := 0.000000000001 Ether or 1_000_000 wei.
-    LOVELACE = BigDecimal("1e6").freeze
-
-    # Ethereum unit 1 shannon := 0.000000001 Ether or 1_000_000_000 wei.
-    SHANNON = BigDecimal("1e9").freeze
-
-    # Ethereum unit 1 szabo := 0.000_001 Ether or 1_000_000_000_000 wei.
-    SZABO = BigDecimal("1e12").freeze
-
-    # Ethereum unit 1 finney := 0.001 Ether or 1_000_000_000_000_000 wei.
-    FINNEY = BigDecimal("1e15").freeze
-
-    # Ethereum unit 1 Ether := 1_000_000_000_000_000_000 wei.
+    # Ethereum unit 1 Klay := 1_000_000_000_000_000_000 peb.
     ETHER = BigDecimal("1e18").freeze
 
-    # Ethereum unit 1 Gwei := 0.000000001 Ether or 1_000_000_000 wei.
-    # Same as shannon, but more commonly used (billion wei).
-    GWEI = SHANNON.freeze
+    # Ethereum unit 1 Gpeb := 0.000000001 Ether or 1_000_000_000 peb.
+    # Same as shannon, but more commonly used (billion peb).
+    GPEB = STON.freeze
   end
 end

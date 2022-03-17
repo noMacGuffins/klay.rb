@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ require "klay/rlp/encoder"
 require "klay/rlp/sedes"
 require "klay/util"
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides an recursive-length prefix (RLP) encoder and decoder.
@@ -44,7 +44,7 @@ module Klay
     # A wrapper to represent already RLP-encoded data.
     class Data < String; end
 
-    # Performes an {Eth::Rlp::Encoder} on any ruby object.
+    # Performes an {Klay::Rlp::Encoder} on any ruby object.
     #
     # @param obj [Object] any ruby object.
     # @return [String] a packed, RLP-encoded item.
@@ -52,7 +52,7 @@ module Klay
       Rlp::Encoder.perform obj
     end
 
-    # Performes an {Eth::Rlp::Decoder} on any RLP-encoded item.
+    # Performes an {Klay::Rlp::Decoder} on any RLP-encoded item.
     #
     # @param rlp [String] a packed, RLP-encoded item.
     # @return [Object] a decoded ruby object.

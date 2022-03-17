@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # Provides the {Eth::Client} super-class to connect to Ethereum
+  # Provides the {Klay::Client} super-class to connect to Klaytn
   # network's RPC-API endpoints (IPC or HTTP).
   class Client
 
@@ -41,8 +41,8 @@ module Klay
     # an IPC path.
     #
     # @param host [String] either an HTTP/S host or an IPC path.
-    # @return [Eth::Client::Ipc] an IPC client.
-    # @return [Eth::Client::Http] an HTTP client.
+    # @return [Klay::Client::Ipc] an IPC client.
+    # @return [Klay::Client::Http] an HTTP client.
     # @raise [ArgumentError] in case it cannot determine the client type.
     def self.create(host)
       return Client::Ipc.new host if host.end_with? ".ipc"
@@ -50,7 +50,7 @@ module Klay
       raise ArgumentError, "Unable to detect client type!"
     end
 
-    # Constructor for the {Eth::Client} super-class. Should not be used;
+    # Constructor for the {Klay::Client} super-class. Should not be used;
     # use {Client.create} intead.
     def initialize(_)
       @id = 0
@@ -61,7 +61,7 @@ module Klay
 
     # Gets the default account (coinbase) of the connected client.
     #
-    # @return [Eth::Address] the coinbase account address.
+    # @return [Klay::Address] the coinbase account address.
     def default_account
       @default_account ||= Address.new eth_coinbase["result"]
     end
@@ -75,7 +75,7 @@ module Klay
 
     # Gets the balance for an address.
     #
-    # @param address [Eth::Address] the address to get the balance for.
+    # @param address [Klay::Address] the address to get the balance for.
     # @return [Integer] the balance in Wei.
     def get_balance(address)
       eth_get_balance(address)["result"].to_i 16
@@ -83,32 +83,32 @@ module Klay
 
     # Gets the next nonce for an address used to draft new transactions.
     #
-    # @param address [Eth::Address] the address to get the nonce for.
+    # @param address [Klay::Address] the address to get the nonce for.
     # @return [Integer] the next nonce to be used.
     def get_nonce(address)
       eth_get_transaction_count(address, "pending")["result"].to_i 16
     end
 
-    # Simply transfer Ether to an account and waits for it to be mined.
+    # Simply transfer Klay to an account and waits for it to be mined.
     # Uses `eth_coinbase` and external signer if no  sender key is
     # provided.
     #
-    # @param destination [Eth::Address] the destination address.
+    # @param destination [Klay::Address] the destination address.
     # @param amount [Integer] the transfer amount in Wei.
-    # @param sender_key [Eth::Key] the sender private key.
+    # @param sender_key [Klay::Key] the sender private key.
     # @param legacy [Boolean] enables legacy transactions (pre-EIP-1559).
     # @return [String] the transaction hash.
     def transfer_and_wait(destination, amount, sender_key = nil, legacy = false)
       wait_for_tx(transfer(destination, amount, sender_key, legacy))
     end
 
-    # Simply transfer Ether to an account without any call data or
+    # Simply transfer Klay to an account without any call data or
     # access lists attached. Uses `eth_coinbase` and external signer
     # if no sender key is provided.
     #
-    # @param destination [Eth::Address] the destination address.
+    # @param destination [Klay::Address] the destination address.
     # @param amount [Integer] the transfer amount in Wei.
-    # @param sender_key [Eth::Key] the sender private key.
+    # @param sender_key [Klay::Key] the sender private key.
     # @param legacy [Boolean] enables legacy transactions (pre-EIP-1559).
     # @return [String] the transaction hash.
     def transfer(destination, amount, sender_key = nil, legacy = false)
@@ -135,7 +135,7 @@ module Klay
           from: sender_key.address,
           nonce: get_nonce(sender_key.address),
         })
-        tx = Eth::Tx.new(params)
+        tx = Klay::Tx.new(params)
         tx.sign sender_key
         return eth_send_raw_transaction(tx.hex)["result"]
       else
@@ -183,7 +183,7 @@ module Klay
     end
 
     # Metafunction to provide all known RPC commands defined in
-    # Eth::Api as snake_case methods to the Eth::Client classes.
+    # Klay::Api as snake_case methods to the Klay::Client classes.
     Api::COMMANDS.each do |cmd|
       method_name = cmd.gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
       define_method method_name do |*args|

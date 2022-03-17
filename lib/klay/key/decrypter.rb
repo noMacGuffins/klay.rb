@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,27 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
-  # The {Eth::Key::Decrypter} class to handle PBKDF2-SHA-256 decryption.
+  # The {Klay::Key::Decrypter} class to handle PBKDF2-SHA-256 decryption.
   class Key::Decrypter
 
     # Provides a specific decrypter error if decryption fails.
     class DecrypterError < StandardError; end
 
-    # Class method {Eth::Key::Decrypter.perform} to perform an keystore
+    # Class method {Klay::Key::Decrypter.perform} to perform an keystore
     # decryption.
     #
     # @param data [JSON] encryption data including cypherkey.
     # @param password [String] password to decrypt the key.
-    # @return [Eth::Key] decrypted key-pair.
+    # @return [Klay::Key] decrypted key-pair.
     def self.perform(data, password)
       new(data, password).perform
     end
 
-    # Constructor of the {Eth::Key::Decrypter} class for secret key
-    # decryption. Should not be used; use {Eth::Key::Decrypter.perform}
+    # Constructor of the {Klay::Key::Decrypter} class for secret key
+    # decryption. Should not be used; use {Klay::Key::Decrypter.perform}
     # instead.
     #
     # @param data [JSON] encryption data including cypherkey.
@@ -45,12 +45,12 @@ module Klay
 
     # Method to decrypt key using password.
     #
-    # @return [Eth::Key] decrypted key.
+    # @return [Klay::Key] decrypted key.
     def perform
       derive_key password
       check_macs
       private_key = Util.bin_to_hex decrypted_data
-      Eth::Key.new priv: private_key
+      Klay::Key.new priv: private_key
     end
 
     private

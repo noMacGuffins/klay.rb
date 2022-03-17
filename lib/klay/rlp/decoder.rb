@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2022 The Ruby-Eth Contributors
+# Copyright (c) 2016-2022 The Ruby-Klay Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 # -*- encoding : ascii-8bit -*-
 
-# Provides the {Eth} module.
+# Provides the {Klay} module.
 module Klay
 
   # Provides an recursive-length prefix (RLP) encoder and decoder.
@@ -28,7 +28,7 @@ module Klay
       #
       # @param rlp [String] an RLP-encoded object.
       # @return [Object] the decoded and maybe deserialized object.
-      # @raise [Eth::Rlp::DecodingError] if the input string does not end after
+      # @raise [Klay::Rlp::DecodingError] if the input string does not end after
       #     the root item.
       def perform(rlp)
         rlp = Util.hex_to_bin rlp if Util.is_hex? rlp
