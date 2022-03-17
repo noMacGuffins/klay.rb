@@ -70,7 +70,6 @@ module Klay
       context = Secp256k1::Context.new
       r, s, v = dissect signature
       v = v.to_i(16)
-      p v
       # raise SignatureError, "Invalid signature v byte #{v} for chain ID #{chain_id}!" if v != 130
       recovery_id = Chain.to_recovery_id v, chain_id
       signature_rs = Util.hex_to_bin "#{r}#{s}"
