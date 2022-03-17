@@ -4,25 +4,24 @@
 lib = File.expand_path("lib", __dir__).freeze
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include? lib
 
-require "eth/version"
+require "klay/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "eth"
-  spec.version = Eth::VERSION
-  spec.authors = ["Steve Ellis", "Afri Schoedon"]
-  spec.email = ["email@steveell.is", "ruby@q9f.cc"]
+  spec.name = "klay"
+  spec.version = Klay::VERSION
+  spec.authors = ["Sehan Park"]
+  spec.email = ["ianparkfirst@gmail.com"]
 
-  spec.summary = %q{Ruby Ethereum library.}
-  spec.description = %q{Library to handle Ethereum accounts, messages, and transactions.}
-  spec.homepage = "https://github.com/q9f/eth.rb"
+  spec.summary = %q{Ruby Klaytn library.}
+  spec.description = %q{Library to handle Klaytn accounts, messages, and transactions.}
+  spec.homepage = "https://github.com/noMacGuffins/klay"
   spec.license = "Apache-2.0"
 
   spec.metadata = {
-    "bug_tracker_uri" => "https://github.com/q9f/eth.rb/issues",
-    "changelog_uri" => "https://github.com/q9f/eth.rb/blob/main/CHANGELOG.md",
-    "documentation_uri" => "https://q9f.github.io/eth.rb/",
-    "github_repo" => "https://github.com/q9f/eth.rb",
-    "source_code_uri" => "https://github.com/q9f/eth.rb",
+    "bug_tracker_uri" => "https://github.com/noMacGuffins/klay/issues",
+    "changelog_uri" => "https://github.com/noMacGuffins/klay/blob/main/CHANGELOG.md",
+    "github_repo" => "https://github.com/noMacGuffins/klay",
+    "source_code_uri" => "https://github.com/noMacGuffins/klay",
   }.freeze
 
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

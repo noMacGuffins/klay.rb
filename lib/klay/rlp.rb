@@ -14,10 +14,10 @@
 
 # -*- encoding : ascii-8bit -*-
 
-require "eth/rlp/decoder"
-require "eth/rlp/encoder"
-require "eth/rlp/sedes"
-require "eth/util"
+require "klay/rlp/decoder"
+require "klay/rlp/encoder"
+require "klay/rlp/sedes"
+require "klay/util"
 
 # Provides the {Eth} module.
 module Klay

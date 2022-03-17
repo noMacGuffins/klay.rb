@@ -14,9 +14,9 @@
 
 # -*- encoding : ascii-8bit -*-
 
-require "eth/rlp/sedes/big_endian_int"
-require "eth/rlp/sedes/binary"
-require "eth/rlp/sedes/list"
+require "klay/rlp/sedes/big_endian_int"
+require "klay/rlp/sedes/binary"
+require "klay/rlp/sedes/list"
 
 # Provides the {Eth} module.
 module Klay

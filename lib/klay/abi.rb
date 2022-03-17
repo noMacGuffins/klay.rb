@@ -16,7 +16,7 @@
 
 require "konstructor"
 
-require "eth/abi/type"
+require "klay/abi/type"
 
 # Provides the {Eth} module.
 module Klay

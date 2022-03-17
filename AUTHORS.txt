@@ -1,10 +1,9 @@
 The Ruby-Eth Contributors are:
-* Steve Ellis @se3000
-* Afri Schoedon @q9f
-* John Omar @chainoperator
+* Sehan Park @noMacGuffins
 
-See also:
-* https://github.com/q9f/eth.rb/graphs/contributors
+The Ruby-Klay project is maintained by Sehan Park's (@noMacGuffins)
+repository licenced under MIT conditions:
+* https://github.com/noMacGuffins/ruby-klay
 
 The Ruby-Eth project was maintained 2016-2020 in Steve Ellis's (@se3000)
 repository licensed under MIT conditions:

@@ -3,8 +3,8 @@
 # use the local version of the code instead of a globally installed gem
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
-require "eth"
-include Eth
+require "klay"
+include Klay
 
 require "pry"
 Pry.start

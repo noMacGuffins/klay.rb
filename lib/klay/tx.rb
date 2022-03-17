@@ -14,11 +14,11 @@
 
 require "konstructor"
 
-require "eth/chain"
-require "eth/tx/eip1559"
-require "eth/tx/eip2930"
-require "eth/tx/legacy"
-require "eth/unit"
+require "klay/chain"
+require "klay/tx/eip1559"
+require "klay/tx/eip2930"
+require "klay/tx/legacy"
+require "klay/unit"
 
 # Provides the {Eth} module.
 module Klay
