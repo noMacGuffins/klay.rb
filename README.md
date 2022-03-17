@@ -1,3 +1,5 @@
+![Klay.rb](https://s3.ap-northeast-2.amazonaws.com/klay.rb/repository-open-graph-template.png)
+
 # Klay for Ruby
 
 A simple library to build and sign Klaytn transactions. Allows separation of key and node management. Sign transactions and handle keys anywhere you can run ruby, broadcast transactions through any node. Sign messages and recover signatures for authentication.
