@@ -63,14 +63,14 @@ module Klay
     #
     # @return [Klay::Address] the coinbase account address.
     def default_account
-      @default_account ||= Address.new klay_coinbase["result"]
+      @default_account ||= Address.new eth_coinbase["result"]
     end
 
     # Gets the chain ID of the connected network.
     #
     # @return [Integer] the chain ID.
     def chain_id
-      @chain_id ||= klay_chain_id["result"].to_i 16
+      @chain_id ||= eth_chain_id["result"].to_i 16
     end
 
     # Gets the balance for an address.
@@ -78,7 +78,7 @@ module Klay
     # @param address [Klay::Address] the address to get the balance for.
     # @return [Integer] the balance in Wei.
     def get_balance(address)
-      klay_get_balance(address)["result"].to_i 16
+      eth_get_balance(address)["result"].to_i 16
     end
 
     # Gets the next nonce for an address used to draft new transactions.
@@ -86,11 +86,11 @@ module Klay
     # @param address [Klay::Address] the address to get the nonce for.
     # @return [Integer] the next nonce to be used.
     def get_nonce(address)
-      klay_get_transaction_count(address, "pending")["result"].to_i 16
+      eth_get_transaction_count(address, "pending")["result"].to_i 16
     end
 
     # Simply transfer Klay to an account and waits for it to be mined.
-    # Uses `klay_coinbase` and external signer if no  sender key is
+    # Uses `eth_coinbase` and external signer if no  sender key is
     # provided.
     #
     # @param destination [Klay::Address] the destination address.
@@ -103,7 +103,7 @@ module Klay
     end
 
     # Simply transfer Klay to an account without any call data or
-    # access lists attached. Uses `klay_coinbase` and external signer
+    # access lists attached. Uses `eth_coinbase` and external signer
     # if no sender key is provided.
     #
     # @param destination [Klay::Address] the destination address.
@@ -137,7 +137,7 @@ module Klay
         })
         tx = Klay::Tx.new(params)
         tx.sign sender_key
-        return klay_send_raw_transaction(tx.hex)["result"]
+        return eth_send_raw_transaction(tx.hex)["result"]
       else
 
         # use the default account as sender and external signer
@@ -145,7 +145,7 @@ module Klay
           from: default_account,
           nonce: get_nonce(default_account),
         })
-        return klay_send_transaction(params)["result"]
+        return eth_send_transaction(params)["result"]
       end
     end
 
@@ -162,7 +162,7 @@ module Klay
     # @param hash [String] the transaction hash.
     # @return [Boolean] true if included in a block.
     def is_mined_tx?(hash)
-      mined_tx = klay_get_transaction_by_hash hash
+      mined_tx = eth_get_transaction_by_hash hash
       !mined_tx.nil? && !mined_tx["result"].nil? && !mined_tx["result"]["blockNumber"].nil?
     end
 
@@ -195,7 +195,7 @@ module Klay
 
     # Prepares parameters and sends the command to the client.
     def send_command(command, args)
-      args << "latest" if ["klay_getBalance", "klay_call"].include? command
+      args << "latest" if ["eth_getBalance", "eth_call"].include? command
       payload = {
         jsonrpc: "2.0",
         method: command,
