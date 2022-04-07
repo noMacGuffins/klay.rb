@@ -18,7 +18,7 @@ module Klay
   # Provides the `Klay::Api` module grouping known RPC commands.
   module Api
 
-    # Implements the available RPC-APIs provided by Gklay version 1.10.15.
+    # Implements the available RPC-APIs provided by Geth version 1.10.15.
     COMMANDS = [
       "admin_addPeer",
       "admin_addTrustedPeer",
@@ -64,7 +64,7 @@ module Klay
       "debug_getAccessibleState",
       "debug_getBadBlocks",
       "debug_getBlockRlp",
-      "debug_gklayeaderRlp",
+      "debug_getHeaderRlp",
       "debug_getModifiedAccountsByHash",
       "debug_getModifiedAccountsByNumber",
       "debug_goTrace",
@@ -76,7 +76,7 @@ module Klay
       "debug_seedHash",
       "debug_setBlockProfileRate",
       "debug_setGCPercent",
-      "debug_sklayead",
+      "debug_setHead",
       "debug_setMutexProfileFraction",
       "debug_stacks",
       "debug_standardTraceBadBlockToFile",
@@ -188,7 +188,7 @@ module Klay
       "les_serverInfo",
       "les_setClientParams",
       "les_setDefaultParams",
-      "miner_gklayashrate",
+      "miner_getHashrate",
       "miner_setKlayerbase",
       "miner_setExtra",
       "miner_setGasLimit",
